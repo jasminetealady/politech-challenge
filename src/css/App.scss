@@ -1,0 +1,100 @@
+@import './reset.css';
+
+body {
+	font-family: 'Avenir', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Avenir', sans-serif;
+}
+
+i {
+	font-style: italic;
+}
+
+.App-header {
+	width: 100%;
+	height: 100px;
+	background-color: #f3f3f3;
+	display: flex;
+	align-items: center;
+	color: #585555;
+	font-size: 24px;
+	font-weight: bold;
+	border-bottom: solid 3px rgba(0, 0, 0, 0.1);
+
+	h1 {
+		padding-left: 2rem;
+	}
+}
+
+.Main {
+	display: flex;
+	width: 100%;
+}
+
+.Search-Wrapper,
+.Favorites,
+.Results {
+	padding: 2rem;
+}
+
+.Search {
+	width: 60%;
+	border-right: solid 3px rgba(0, 0, 0, 0.1);
+	height: 100vh;
+
+	.Search-Wrapper {
+		height: 25vh;
+		border-bottom: solid 3px rgba(0, 0, 0, 0.1);
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+
+		.Search-Text {
+			padding-right: 3rem;
+			line-height: 2;
+		}
+
+		.Search-Input {
+			p {
+				font-size: 12px;
+				padding-bottom: 0.5rem;
+				color: grey;
+			}
+
+			form {
+				width: 50%;
+			}
+
+			input {
+				padding: 0.5rem;
+				width: 70%;
+			}
+
+			button {
+				padding: 0.6rem;
+				border: none;
+				background-color: grey;
+				text-transform: uppercase;
+				color: #fff;
+				border-radius: 3px;
+				font-weight: bold;
+			}
+		}
+
+		.Results {
+			height: 60vh;
+		}
+	}
+}
+
+.Favorites {
+	width: 40%;
+	height: 100vh;
+}
