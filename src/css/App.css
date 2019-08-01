@@ -1,0 +1,57 @@
+@import './reset.css';
+
+body {
+	font-family: 'Avenir', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Avenir', sans-serif;
+}
+
+.App-header {
+	width: 100%;
+	height: 100px;
+	background-color: #f3f3f3;
+	display: flex;
+	align-items: center;
+	padding-left: 2rem;
+	color: #585555;
+	font-size: 24px;
+	font-weight: bold;
+	border-bottom: solid 3px rgba(0, 0, 0, 0.1);
+}
+
+.Main {
+	display: flex;
+}
+
+.Search-Input,
+.Results,
+.Favorites {
+	padding: 2rem;
+}
+
+.Search {
+	width: 60%;
+	border-right: solid 3px rgba(0, 0, 0, 0.1);
+	height: 100vh;
+}
+
+.Search-Input {
+	height: 40vh;
+	border-bottom: solid 3px rgba(0, 0, 0, 0.1);
+}
+
+.Results {
+	height: 60vh;
+}
+
+.Favorites {
+	width: 40%;
+	height: 100vh;
+}
