@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GIF from './GIF.js';
 
 class Results extends Component {
 	state = {
@@ -13,11 +14,8 @@ class Results extends Component {
 		return (
 			<div className="Results">
 				<h2>Your Result</h2>
-				<div className="GIF">
-					<p>GIF Name</p>
-					<p>Image here</p>
-					<button>Like Thumb</button>
-				</div>
+				<GIF />
+				<div className="Results-Button-Wrapper"><button>Like Thumb</button></div>
 				<div className="Slider">
 					<input
 						type="range"
