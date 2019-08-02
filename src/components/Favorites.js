@@ -2,44 +2,30 @@ import React, { Component } from 'react';
 import GIF from './GIF.js';
 
 class Favorites extends Component {
-	state = {
-		gifs: [],
-		gifsLeft: 0
-	};
-
-	componentDidMount() {
-		this.calculateGifsLeft();
-	}
-
-	calculateGifsLeft = () => {
-		let left = 5 - this.state.gifs.length;
-		console.log(left);
-		this.setState({ gifsLeft: left });
-	};
-
 	render() {
-		const areGifs = this.state.gifs.length > 0;
-		let gifs;
-		let gifsLeft = this.state.gifsLeft;
+		let gifsLeft = this.props.userData.gifsLeft;
+		let likedGifs = this.props.userData.likedGifs;
 		let gifsLeftText;
+		let gifs;
 
-		if (gifsLeft <= 5) {
+		if (gifsLeft > 0 && gifsLeft <= 5) {
 			gifsLeftText = (
 				<p>
 					You must <i>like</i> {gifsLeft} more {gifsLeft === 1 ? 'GIF' : 'GIFs'}{' '}
 					to calculate your score
 				</p>
 			);
-		} else gifsLeftText = null;
+		} else
+			gifsLeftText = <p>You're now ready to calculate your weirdness score!</p>;
 
-		if (areGifs) {
-			gifs = this.state.gifs.map(x => <GIF key={this.state.gifs.indexOf(x)} />);
-		}
+		gifs = likedGifs.map(x => (
+			<GIF name={x.name} url={x.url} key={likedGifs.indexOf(x)} />
+		));
 
 		return (
 			<div className="Favorites">
 				<h2>Your Liked GIFs</h2>
-				<div className="GIFs">{gifs}</div>
+				<div className="GIFs">{gifs.map(x => x)}</div>
 				<div className="Calculate">
 					{gifsLeftText}
 					<button>Calculate My Weirdness Score</button>

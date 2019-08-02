@@ -2,7 +2,8 @@ export default function userDataReducer(
 	state = {
 		loading: false,
 		likedGifs: [],
-		currentGif: {}
+		currentGif: {},
+		gifsLeft: 5
 	},
 	action
 ) {
@@ -25,10 +26,11 @@ export default function userDataReducer(
 		case 'ADD_GIF':
 			let gifs = state.likedGifs;
 			gifs.push(action.gif);
-			debugger;
+			let remaining = 5 - gifs.length;
 			return {
 				...state,
-				likedGifs: gifs
+				likedGifs: gifs,
+				gifsLeft: remaining
 			};
 
 		default:
