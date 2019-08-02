@@ -10,7 +10,7 @@ export function fetchGif(query, weirdness) {
 			.then(function(data) {
 				if (data) {
 					data = data.data;
-					dispatch({ type: 'FETCH_GIF', data, weirdness });
+					dispatch({ type: 'FETCH_GIF', data, query, weirdness });
 				}
 			});
 	};
