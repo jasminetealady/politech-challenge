@@ -1,10 +1,10 @@
 import React from 'react';
 
-function GIF({ gifName, url, loading }) {
+function GIF({ name, url, loading }) {
 	return (
 		<div className="GIF">
-			<p className="GIF-Name">{gifName}</p>
-      {loading && 'Loading'}
+			<p className="GIF-Name">{name}</p>
+			{loading && 'Loading'}
 			{url && <img src={url} alt="giphy gif" />}
 		</div>
 	);

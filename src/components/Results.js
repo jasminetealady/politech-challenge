@@ -3,42 +3,38 @@ import GIF from './GIF.js';
 
 class Results extends Component {
 	state = {
-		loadingWeirder: false,
-		likedGifs: [],
-		error: false
+		error: false,
+		weirdness: 0
 	};
 
 	handleChange = e => {
-		this.setState({ weirdnessLevel: e.currentTarget.value });
-		this.props.fetchGif(e.currentTarget.value);
+		this.setState({ weirdness: e.currentTarget.value });
+		// this.props.fetchGif(e.currentTarget.value);
 	};
 
 	handleClick = () => {
-		let gifs = this.state.likedGifs;
-		let likedGif = {
-			name: this.props.gifName,
-			url: this.props.url,
-			weirdnessLevel: this.props.weirdness
-		};
-		if (gifs.length < 5) {
-			gifs.push(likedGif);
-		} else {
-			this.setState({ error: true });
-		}
-		this.setState({ likedGifs: gifs });
-		this.props.setLikedGifs(gifs);
+		// let gifs = this.state.likedGifs;
+		// let likedGif = {
+		// 	name: this.props.gifName,
+		// 	url: this.props.url,
+		// 	weirdnessLevel: this.props.weirdness
+		// };
+		// if (gifs.length < 5) {
+		// 	gifs.push(likedGif);
+		// } else {
+		// 	this.setState({ error: true });
+		// }
 	};
 
 	render() {
+		let url = this.props.userData.currentGif.url;
+		let name = this.props.userData.currentGif.name;
+		let weirdness = this.props.userData.currentGif.weirdness;
+		let loading = this.props.userData.loading;
 		return (
 			<div className="Results">
 				<h2>Your Result</h2>
-				<GIF
-					gifName={this.props.gifName}
-					url={this.props.url}
-					loading={this.props.loading}
-					loadingWeirder={this.state.loadingWeirder}
-				/>
+				<GIF name={name} url={url} loading={loading} />
 				{this.props.url && (
 					<div className="Results-Button-Wrapper">
 						<button onClick={this.handleClick}>Like</button>
