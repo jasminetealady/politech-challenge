@@ -3,11 +3,13 @@ import GIF from './GIF.js';
 
 class Results extends Component {
 	state = {
-		weirdnessLevel: 0
+		weirdnessLevel: 0,
+		loadingWeirder: false
 	};
 
 	handleChange = e => {
-		this.setState({ weirdnessLevel: e.target.value });
+		this.setState({ weirdnessLevel: e.currentTarget.value });
+		this.props.fetchGif(e.currentTarget.value);
 	};
 
 	render() {
@@ -18,6 +20,7 @@ class Results extends Component {
 					gifName={this.props.gifName}
 					url={this.props.url}
 					loading={this.props.loading}
+					loadingWeirder={this.state.loadingWeirder}
 				/>
 				<div className="Results-Button-Wrapper">
 					<button>Like Thumb</button>

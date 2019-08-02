@@ -18,18 +18,18 @@ class Search extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		if (this.state.query !== '') {
-			this.fetchGif();
+			this.fetchGif(0);
 		} else this.setState({ error: true });
 	};
 
-	fetchGif = async () => {
+	fetchGif = async weirdness => {
 		let api = process.env.REACT_APP_API_URL;
 		let key = process.env.REACT_APP_API_KEY;
-		let weirdness = 0;
 		let query = this.state.query;
 		let url = `${api}?s=${query}&api_key=${key}&limit=5&weirdness=${weirdness}`;
 
 		this.setState({ isLoading: true });
+		console.log(url);
 
 		fetch(url)
 			.then(resp => resp.json())
@@ -72,6 +72,7 @@ class Search extends Component {
 					</div>
 				</div>
 				<Results
+					fetchGif={this.fetchGif}
 					query={this.state.query}
 					url={this.state.url}
 					gifName={this.state.gifName}
