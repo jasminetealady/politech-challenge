@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Favorites from './Favorites.js';
 import Search from './Search.js';
+import { Switch, Route } from 'react-router-dom';
 
 class Main extends Component {
 	state = {
@@ -15,8 +16,20 @@ class Main extends Component {
 		return (
 			<>
 				<div className="Main">
-					<Search setLikedGifs={this.setLikedGifs} />
-					<Favorites likedGifs={this.state.likedGifs} />
+					<Switch>
+						<Route
+							exact
+							path="/"
+							render={routerProps => (
+								<>
+									<Search {...routerProps} userData={this.props.userData} />
+									<Favorites {...routerProps} userData={this.props.userData} />
+								</>
+							)}
+						/>
+
+						<Route path="/liked" />
+					</Switch>
 				</div>
 			</>
 		);
