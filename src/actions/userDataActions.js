@@ -21,3 +21,9 @@ export function addLikedGif(gif) {
 		dispatch({ type: 'ADD_GIF', gif });
 	};
 }
+
+export function deleteGif(gif) {
+	return dispatch => {
+		dispatch({ type: 'DELETE_GIF', gif });
+	};
+}
