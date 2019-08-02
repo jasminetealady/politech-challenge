@@ -24,11 +24,13 @@ class Favorites extends Component {
 
 		return (
 			<div className="Favorites">
-				<h2>Your Liked GIFs</h2>
-				<div className="GIFs">{gifs.map(x => x)}</div>
-				<div className="Calculate">
-					{gifsLeftText}
-					<button>Calculate My Weirdness Score</button>
+				<div className="Favorites-Wrapper">
+					<h2>Your Liked GIFs</h2>
+					<div className="GIFs">{gifs.map(x => x)}</div>
+					<div className="Calculate">
+						{gifsLeftText}
+						<button>Calculate My Weirdness Score</button>
+					</div>
 				</div>
 			</div>
 		);

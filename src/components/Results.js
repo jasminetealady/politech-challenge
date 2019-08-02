@@ -3,6 +3,8 @@ import GIF from './GIF.js';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { addLikedGif } from '../actions/userDataActions.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 class Results extends Component {
 	state = {
@@ -33,31 +35,35 @@ class Results extends Component {
 		let loading = this.props.userData.loading;
 		return (
 			<div className="Results">
-				<h2>Your Result</h2>
-				<GIF name={name} url={url} loading={loading} />
-				{url && (
-					<div className="Results-Button-Wrapper">
-						<button onClick={this.handleClick}>Like</button>
-					</div>
-				)}
-				{url && (
-					<div className="Slider">
-						<input
-							type="range"
-							min="0"
-							max="10"
-							defaultValue="0"
-							onChange={this.handleChange}
-						/>
-						<p>Weirdness: {weirdness}</p>
-					</div>
-				)}
-				{this.state.error && (
-					<p class="Max-GIFs-Error">
-						You have selected the maximum number of GIFs. Please <i>unlike</i>{' '}
-						one of your GIFs if you would like to <i>like</i> another!
-					</p>
-				)}
+				<div className="Results-Wrapper">
+					<h2>Your Result</h2>
+					<GIF name={name} url={url} loading={loading} />
+					{url && (
+						<div className="Results-Button-Wrapper">
+							<button onClick={this.handleClick}>
+								<FontAwesomeIcon icon={faThumbsUp} />
+							</button>
+						</div>
+					)}
+					{url && (
+						<div className="Slider">
+							<input
+								type="range"
+								min="0"
+								max="10"
+								defaultValue="0"
+								onChange={this.handleChange}
+							/>
+							<p>Weirdness: {weirdness}</p>
+						</div>
+					)}
+					{this.state.error && (
+						<p class="Max-GIFs-Error">
+							You have selected the maximum number of GIFs. Please <i>unlike</i>{' '}
+							one of your GIFs if you would like to <i>like</i> another!
+						</p>
+					)}
+				</div>
 			</div>
 		);
 	}
