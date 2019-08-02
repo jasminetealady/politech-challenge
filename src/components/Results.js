@@ -14,8 +14,14 @@ class Results extends Component {
 		return (
 			<div className="Results">
 				<h2>Your Result</h2>
-				<GIF />
-				<div className="Results-Button-Wrapper"><button>Like Thumb</button></div>
+				<GIF
+					gifName={this.props.gifName}
+					url={this.props.url}
+					loading={this.props.loading}
+				/>
+				<div className="Results-Button-Wrapper">
+					<button>Like Thumb</button>
+				</div>
 				<div className="Slider">
 					<input
 						type="range"

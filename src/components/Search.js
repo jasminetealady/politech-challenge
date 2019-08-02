@@ -4,25 +4,42 @@ import Results from './Results.js';
 class Search extends Component {
 	state = {
 		query: '',
-		weirdness: 5,
-		url: ''
+		url: '',
+		gifName: '',
+		isLoading: false,
+		error: false
 	};
 
 	handleChange = e => {
+		this.setState({ error: false });
 		this.setState({ query: e.target.value });
 	};
 
 	handleSubmit = e => {
 		e.preventDefault();
+		if (this.state.query !== '') {
+			this.fetchGif();
+		} else this.setState({ error: true });
+	};
+
+	fetchGif = async () => {
 		let api = process.env.REACT_APP_API_URL;
 		let key = process.env.REACT_APP_API_KEY;
-		let weirdness = this.state.weirdness;
+		let weirdness = 0;
 		let query = this.state.query;
 		let url = `${api}?s=${query}&api_key=${key}&limit=5&weirdness=${weirdness}`;
 
+		this.setState({ isLoading: true });
+
 		fetch(url)
 			.then(resp => resp.json())
-			.then(data => this.setState({ url: data.data.images.original.url }));
+			.then(data =>
+				this.setState({
+					url: data.data.images.original.url,
+					gifName: data.data.title,
+					isLoading: false
+				})
+			);
 	};
 
 	render() {
@@ -51,12 +68,15 @@ class Search extends Component {
 							/>
 							<button>Search</button>
 						</form>
-						<br />
-						{this.state.query}
-						<img src={this.state.url} alt="giphy gif" />
+						{this.state.error && <span>* You must enter some text</span>}
 					</div>
 				</div>
-				<Results />
+				<Results
+					query={this.state.query}
+					url={this.state.url}
+					gifName={this.state.gifName}
+					loading={this.state.isLoading}
+				/>
 			</div>
 		);
 	}
