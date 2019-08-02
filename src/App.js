@@ -10,7 +10,7 @@ function App(props) {
 			<header className="App-header">
 				<h1>Weirdness Calculator</h1>
 			</header>
-			<Main userData={this.props.userData} />
+			<Main userData={props.userData} />
 		</div>
 	);
 }
