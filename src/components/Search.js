@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Results from './Results.js';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { fetchGif } from '../actions/userDataActions.js';
 
 class Search extends Component {
 	state = {
@@ -12,11 +15,6 @@ class Search extends Component {
 		likedGifs: []
 	};
 
-	setLikedGifs = gifs => {
-		debugger;
-		this.props.setLikedGifs(gifs);
-	};
-
 	handleChange = e => {
 		this.setState({ error: false });
 		this.setState({ query: e.target.value });
@@ -25,7 +23,7 @@ class Search extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		if (this.state.query !== '') {
-			this.fetchGif(0);
+			this.props.fetchGif(this.state.query, 0);
 		} else this.setState({ error: true });
 	};
 
@@ -93,4 +91,13 @@ class Search extends Component {
 	}
 }
 
-export default Search;
+const mapStateToProps = state => {
+	return { query: state.userData.query };
+};
+
+export default withRouter(
+	connect(
+		mapStateToProps,
+		{ fetchGif }
+	)(Search)
+);
