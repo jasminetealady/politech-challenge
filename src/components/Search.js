@@ -8,7 +8,13 @@ class Search extends Component {
 		gifName: '',
 		weirdnessLevel: 0,
 		isLoading: false,
-		error: false
+		error: false,
+		likedGifs: []
+	};
+
+	setLikedGifs = gifs => {
+		debugger;
+		this.props.setLikedGifs(gifs);
 	};
 
 	handleChange = e => {
@@ -74,6 +80,7 @@ class Search extends Component {
 					</div>
 				</div>
 				<Results
+					setLikedGifs={this.setLikedGifs}
 					fetchGif={this.fetchGif}
 					query={this.state.query}
 					url={this.state.url}

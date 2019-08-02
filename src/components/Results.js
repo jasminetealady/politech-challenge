@@ -25,8 +25,8 @@ class Results extends Component {
 		} else {
 			this.setState({ error: true });
 		}
-		console.log(gifs);
 		this.setState({ likedGifs: gifs });
+		this.props.setLikedGifs(gifs);
 	};
 
 	render() {
