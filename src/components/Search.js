@@ -6,6 +6,7 @@ class Search extends Component {
 		query: '',
 		url: '',
 		gifName: '',
+		weirdnessLevel: 0,
 		isLoading: false,
 		error: false
 	};
@@ -37,7 +38,8 @@ class Search extends Component {
 				this.setState({
 					url: data.data.images.original.url,
 					gifName: data.data.title,
-					isLoading: false
+					isLoading: false,
+					weirdnessLevel: weirdness
 				})
 			);
 	};
@@ -76,6 +78,7 @@ class Search extends Component {
 					query={this.state.query}
 					url={this.state.url}
 					gifName={this.state.gifName}
+					weirdness={this.state.weirdnessLevel}
 					loading={this.state.isLoading}
 				/>
 			</div>
