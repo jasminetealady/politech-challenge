@@ -4,7 +4,9 @@ import GIF from './GIF.js';
 class Favorites extends Component {
 	state = {
 		gifs: [1, 2, 3, 4, 5],
-		gifsLeft: 0
+		gifsLeft: 0,
+		weirdness: 10,
+		string: 'ryan gosling'
 	};
 
 	render() {
@@ -33,6 +35,7 @@ class Favorites extends Component {
 				<div className="Calculate">
 					{gifsLeftText}
 					<button>Calculate My Weirdness Score</button>
+					{process.env.REACT_APP_GIPHY_KEY}
 				</div>
 			</div>
 		);

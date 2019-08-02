@@ -1,7 +1,30 @@
 import React, { Component } from 'react';
 import Results from './Results.js';
 
-class Favorites extends Component {
+class Search extends Component {
+	state = {
+		query: '',
+		weirdness: 5,
+		url: ''
+	};
+
+	handleChange = e => {
+		this.setState({ query: e.target.value });
+	};
+
+	handleSubmit = e => {
+		e.preventDefault();
+		let api = process.env.REACT_APP_API_URL;
+		let key = process.env.REACT_APP_API_KEY;
+		let weirdness = this.state.weirdness;
+		let query = this.state.query;
+		let url = `${api}?s=${query}&api_key=${key}&limit=5&weirdness=${weirdness}`;
+
+		fetch(url)
+			.then(resp => resp.json())
+			.then(data => this.setState({ url: data.data.images.original.url }));
+	};
+
 	render() {
 		return (
 			<div className="Search">
@@ -20,10 +43,17 @@ class Favorites extends Component {
 					</div>
 					<div className="Search-Input">
 						<p>Search Term</p>
-						<form>
-							<input type="text" placeholder="Type your search term here ..." />
+						<form onSubmit={this.handleSubmit}>
+							<input
+								type="text"
+								placeholder="Type your search term here ..."
+								onChange={this.handleChange}
+							/>
 							<button>Search</button>
 						</form>
+						<br />
+						{this.state.query}
+						<img src={this.state.url} alt="giphy gif" />
 					</div>
 				</div>
 				<Results />
@@ -32,4 +62,4 @@ class Favorites extends Component {
 	}
 }
 
-export default Favorites;
+export default Search;
