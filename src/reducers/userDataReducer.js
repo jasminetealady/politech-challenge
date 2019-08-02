@@ -2,7 +2,7 @@ export default function userDataReducer(
 	state = {
 		loading: false,
 		likedGifs: [],
-		currentlyFetchedGif: {}
+		currentGif: {}
 	},
 	action
 ) {
@@ -11,13 +11,13 @@ export default function userDataReducer(
 			return { ...state, loading: true };
 
 		case 'FETCH_GIF':
-			debugger;
 			return {
 				...state,
 				loading: false,
-				currentlyFetchedGif: {
+				currentGif: {
 					name: action.data.title,
-					url: action.data.images.original.url
+					url: action.data.images.original.url,
+					weirdness: action.weirdness
 				}
 			};
 
