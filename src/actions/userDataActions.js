@@ -15,3 +15,9 @@ export function fetchGif(query, weirdness) {
 			});
 	};
 }
+
+export function addLikedGif(gif) {
+	return dispatch => {
+		dispatch({ type: 'ADD_GIF', gif });
+	};
+}

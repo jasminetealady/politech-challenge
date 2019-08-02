@@ -22,6 +22,15 @@ export default function userDataReducer(
 				}
 			};
 
+		case 'ADD_GIF':
+			let gifs = state.likedGifs;
+			gifs.push(action.gif);
+			debugger;
+			return {
+				...state,
+				likedGifs: gifs
+			};
+
 		default:
 			return state;
 	}

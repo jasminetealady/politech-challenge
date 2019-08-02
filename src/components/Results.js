@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import GIF from './GIF.js';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { addLikedGif } from '../actions/userDataActions.js';
 
 class Results extends Component {
 	state = {
@@ -15,17 +18,12 @@ class Results extends Component {
 	};
 
 	handleClick = () => {
-		// let gifs = this.state.likedGifs;
-		// let likedGif = {
-		// 	name: this.props.gifName,
-		// 	url: this.props.url,
-		// 	weirdnessLevel: this.props.weirdness
-		// };
-		// if (gifs.length < 5) {
-		// 	gifs.push(likedGif);
-		// } else {
-		// 	this.setState({ error: true });
-		// }
+		let gif = this.props.userData.currentGif;
+		if (this.props.userData.likedGifs.length < 5) {
+			this.props.addLikedGif(gif);
+		} else {
+			this.setState({ error: true });
+		}
 	};
 
 	render() {
@@ -65,4 +63,9 @@ class Results extends Component {
 	}
 }
 
-export default Results;
+export default withRouter(
+	connect(
+		null,
+		{ addLikedGif }
+	)(Results)
+);
