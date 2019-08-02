@@ -49,7 +49,7 @@ class Results extends Component {
 							defaultValue="0"
 							onChange={this.handleChange}
 						/>
-						<p>Weirdness: {this.props.weirdness}</p>
+						<p>Weirdness: {weirdness}</p>
 					</div>
 				)}
 				{this.state.error && (

@@ -7,12 +7,7 @@ import { fetchGif } from '../actions/userDataActions.js';
 class Search extends Component {
 	state = {
 		query: '',
-		url: '',
-		gifName: '',
-		weirdnessLevel: 0,
-		isLoading: false,
-		error: false,
-		likedGifs: []
+		error: false
 	};
 
 	handleChange = e => {
@@ -25,27 +20,6 @@ class Search extends Component {
 		if (this.state.query !== '') {
 			this.props.fetchGif(this.state.query, 0);
 		} else this.setState({ error: true });
-	};
-
-	fetchGif = async weirdness => {
-		let api = process.env.REACT_APP_API_URL;
-		let key = process.env.REACT_APP_API_KEY;
-		let query = this.state.query;
-		let url = `${api}?s=${query}&api_key=${key}&limit=5&weirdness=${weirdness}`;
-
-		this.setState({ isLoading: true });
-		console.log(url);
-
-		fetch(url)
-			.then(resp => resp.json())
-			.then(data =>
-				this.setState({
-					url: data.data.images.original.url,
-					gifName: data.data.title,
-					isLoading: false,
-					weirdnessLevel: weirdness
-				})
-			);
 	};
 
 	render() {
@@ -77,27 +51,19 @@ class Search extends Component {
 						{this.state.error && <span>* You must enter some text</span>}
 					</div>
 				</div>
-				<Results
-					setLikedGifs={this.setLikedGifs}
-					fetchGif={this.fetchGif}
-					query={this.state.query}
-					url={this.state.url}
-					gifName={this.state.gifName}
-					weirdness={this.state.weirdnessLevel}
-					loading={this.state.isLoading}
-				/>
+				<Results userData={this.props.userData} />
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = state => {
-	return { query: state.userData.query };
-};
+// const mapStateToProps = state => {
+// 	return { query: state.userData };
+// };
 
 export default withRouter(
 	connect(
-		mapStateToProps,
+		null,
 		{ fetchGif }
 	)(Search)
 );
