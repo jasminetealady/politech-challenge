@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class GIF extends Component {
-	render() {
-		return (
-			<div className="GIF">
-				<p className="GIF-Name">GIF Name</p>
-				<p>Image</p>
-			</div>
-		);
-	}
+function GIF({ gifName, url, loading }) {
+	return (
+		<div className="GIF">
+			<p className="GIF-Name">{gifName}</p>
+      {loading && 'Loading'}
+			{url && <img src={url} alt="giphy gif" />}
+		</div>
+	);
 }
 
 export default GIF;
