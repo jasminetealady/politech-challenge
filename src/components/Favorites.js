@@ -3,10 +3,18 @@ import GIF from './GIF.js';
 
 class Favorites extends Component {
 	state = {
-		gifs: [1, 2, 3, 4, 5],
-		gifsLeft: 0,
-		weirdness: 10,
-		string: 'ryan gosling'
+		gifs: [],
+		gifsLeft: 0
+	};
+
+	componentDidMount() {
+		this.calculateGifsLeft();
+	}
+
+	calculateGifsLeft = () => {
+		let left = 5 - this.state.gifs.length;
+		console.log(left);
+		this.setState({ gifsLeft: left });
 	};
 
 	render() {
@@ -15,7 +23,7 @@ class Favorites extends Component {
 		let gifsLeft = this.state.gifsLeft;
 		let gifsLeftText;
 
-		if (gifsLeft < 5) {
+		if (gifsLeft <= 5) {
 			gifsLeftText = (
 				<p>
 					You must <i>like</i> {gifsLeft} more {gifsLeft === 1 ? 'GIF' : 'GIFs'}{' '}
@@ -25,7 +33,7 @@ class Favorites extends Component {
 		} else gifsLeftText = null;
 
 		if (areGifs) {
-			gifs = this.state.gifs.map(x => <GIF />);
+			gifs = this.state.gifs.map(x => <GIF key={this.state.gifs.indexOf(x)} />);
 		}
 
 		return (
@@ -35,7 +43,6 @@ class Favorites extends Component {
 				<div className="Calculate">
 					{gifsLeftText}
 					<button>Calculate My Weirdness Score</button>
-					{process.env.REACT_APP_GIPHY_KEY}
 				</div>
 			</div>
 		);
