@@ -51,7 +51,10 @@ class Search extends Component {
 						{this.state.error && <span>* You must enter some text</span>}
 					</div>
 				</div>
-				<Results userData={this.props.userData} />
+				<Results
+					fetchGif={this.props.fetchGif}
+					userData={this.props.userData}
+				/>
 			</div>
 		);
 	}

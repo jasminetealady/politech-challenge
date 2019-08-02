@@ -17,7 +17,8 @@ export default function userDataReducer(
 				currentGif: {
 					name: action.data.title,
 					url: action.data.images.original.url,
-					weirdness: action.weirdness
+					weirdness: action.weirdness,
+					query: action.query
 				}
 			};
 

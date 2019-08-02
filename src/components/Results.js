@@ -8,8 +8,10 @@ class Results extends Component {
 	};
 
 	handleChange = e => {
-		this.setState({ weirdness: e.currentTarget.value });
-		// this.props.fetchGif(e.currentTarget.value);
+		let query = this.props.userData.currentGif.query;
+		let weirdness = e.currentTarget.value;
+		this.setState({ weirdness: weirdness });
+		this.props.fetchGif(query, weirdness);
 	};
 
 	handleClick = () => {
@@ -35,12 +37,12 @@ class Results extends Component {
 			<div className="Results">
 				<h2>Your Result</h2>
 				<GIF name={name} url={url} loading={loading} />
-				{this.props.url && (
+				{url && (
 					<div className="Results-Button-Wrapper">
 						<button onClick={this.handleClick}>Like</button>
 					</div>
 				)}
-				{this.props.url && (
+				{url && (
 					<div className="Slider">
 						<input
 							type="range"
