@@ -19,7 +19,7 @@ class Favorites extends Component {
 			gifsLeftText = <p>You're now ready to calculate your weirdness score!</p>;
 
 		gifs = likedGifs.map(x => (
-			<GIF name={x.name} url={x.url} key={likedGifs.indexOf(x)} />
+			<GIF name={x.name} url={x.url} icon={true} key={likedGifs.indexOf(x)} />
 		));
 
 		return (

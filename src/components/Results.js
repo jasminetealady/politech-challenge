@@ -37,7 +37,7 @@ class Results extends Component {
 			<div className="Results">
 				<div className="Results-Wrapper">
 					<h2>Your Result</h2>
-					<GIF name={name} url={url} loading={loading} />
+					<GIF name={name} url={url} loading={loading} icon={false} />
 					{url && (
 						<div className="Results-Button-Wrapper">
 							<button onClick={this.handleClick}>

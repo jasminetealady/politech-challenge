@@ -24,13 +24,24 @@ export default function userDataReducer(
 			};
 
 		case 'ADD_GIF':
-			let gifs = state.likedGifs;
-			gifs.push(action.gif);
-			let remaining = 5 - gifs.length;
+			let likedGifs = state.likedGifs;
+			likedGifs.push(action.gif);
+			let remaining = 5 - likedGifs.length;
 			return {
 				...state,
-				likedGifs: gifs,
+				likedGifs: likedGifs,
 				gifsLeft: remaining
+			};
+
+		case 'DELETE_GIF':
+			let gifsAfterDelete = state.likedGifs.filter(
+				gif => gif.url !== action.gif.url
+			);
+			let remainingAfterDelete = 5 - gifsAfterDelete.length;
+			return {
+				...state,
+				likedGifs: gifsAfterDelete,
+				gifsLeft: remainingAfterDelete
 			};
 
 		default:
