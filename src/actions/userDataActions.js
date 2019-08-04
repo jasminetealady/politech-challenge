@@ -27,3 +27,9 @@ export function deleteGif(gif) {
 		dispatch({ type: 'DELETE_GIF', gif });
 	};
 }
+
+export function setMessage(message) {
+	return dispatch => {
+		dispatch({ type: 'SET_MESSAGE', message });
+	};
+}
