@@ -30,6 +30,19 @@ button {
 	outline: none;
 }
 
+.button {
+	color: #fff;
+	background-color: $coral;
+	border: none;
+	padding: 1rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	border-radius: 5px;
+	text-decoration: none;
+	font-size: 14px;
+	margin-top: 2rem;
+}
+
 .App-header {
 	width: 100%;
 	height: 70px;
@@ -143,19 +156,12 @@ button {
 		}
 	}
 
-	.Max-GIFs-Error {
-		color: red;
-		margin-top: 2rem;
-		line-height: 1.5;
-		font-weight: bold;
-	}
-
 	.GIF {
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: 2rem 0;
+		padding-bottom: 2rem;
 
 		img {
 			height: 300px;
@@ -163,6 +169,7 @@ button {
 
 		p {
 			margin-bottom: 2rem;
+			text-transform: capitalize;
 		}
 	}
 
@@ -205,6 +212,12 @@ button {
 			font-size: 12px;
 			color: grey;
 		}
+
+		.GIFs-Message {
+			color: $coral;
+			margin-top: 1rem;
+			font-weight: bold;
+		}
 	}
 }
 
@@ -224,7 +237,6 @@ button {
 
 		img {
 			object-fit: contain;
-			// width: 100%;
 			height: 200px;
 			width: 200px;
 		}
@@ -262,15 +274,82 @@ button {
 			font-weight: bold;
 		}
 
-		button {
-			margin-top: 2rem;
-			background: $maingray;
-			border-radius: 3px;
-			padding: 0.5rem 1rem;
-			font-size: 14px;
-			border: none;
-			color: grey;
-			text-transform: uppercase;
+		a {
+			@extend .button;
+		}
+	}
+}
+
+.Weirdness-Score {
+	width: 100%;
+	h1 {
+		color: $coral;
+		font-size: 20px;
+		text-align: center;
+		font-weight: bold;
+		margin-top: 5rem;
+	}
+
+	a {
+		text-align: center;
+		margin-top: 2rem;
+		text-decoration: none;
+	}
+
+	p {
+		text-align: center;
+		font-weight: bold;
+		margin-top: 4rem;
+		margin-bottom: 4rem;
+	}
+
+	.Button-Wrapper {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		padding: 2rem 0;
+	}
+
+	button,
+	a {
+		@extend .button;
+	}
+
+	.Weirdness-Score-GIFs {
+		padding: 0 1rem;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, 300px);
+		grid-row-gap: 2rem;
+		grid-column-gap: 2rem;
+		margin-top: 2rem;
+		justify-content: center;
+
+		.GIF {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+			border: solid 1px rgba(0, 0, 0, 0.1);
+			border-radius: 5px;
+			box-shadow: 3px 3px 16px 0px #e4dddd;
+			padding: 0.5rem 0;
+
+			.GIF-Name {
+				color: grey;
+				font-weight: bold;
+				margin-bottom: 1rem;
+				font-size: 14px;
+				text-align: center;
+				text-transform: capitalize;
+				padding: 0 10px;
+			}
+
+			img {
+				object-fit: contain;
+				height: 200px;
+				width: 200px;
+			}
 		}
 	}
 }
