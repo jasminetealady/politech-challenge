@@ -1,3 +1,11 @@
+# Weirdness Calculator
+
+This application is a "weirdness calculator" built with React and Redux that pulls from the GIPHY translate API based on a user entered query and "weirdness" level from 0-10. Users may search any query and receive results with 0 weirdness by default, as well as move a slider to request GIFs with higher levels of weirdness. Users may only like one GIF per search query and must like 5 GIFs to calculate their weirdness score. Users may unlike GIFs or start from the beginning after an initial score has been calculated.
+
+## Run Project
+
+You may view and use this app on [https://weirdness-calculator.netlify.com/](https://weirdness-calculator.netlify.com/) or `git clone` it, run `npm install`, and `npm start` to use it locally.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
