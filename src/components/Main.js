@@ -1,39 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Favorites from './Favorites.js';
 import Search from './Search.js';
+import WeirdnessScore from './WeirdnessScore.js';
 import { Switch, Route } from 'react-router-dom';
 
-class Main extends Component {
-	state = {
-		likedGifs: []
-	};
+const Main = ({ userData }) => {
+	return (
+		<>
+			<div className="Main">
+				<Switch>
+					<Route
+						exact
+						path="/"
+						render={routerProps => (
+							<>
+								<Search {...routerProps} userData={userData} />
+								<Favorites {...routerProps} userData={userData} />
+							</>
+						)}
+					/>
 
-	setLikedGifs = gifs => {
-		this.setState({ likedGifs: gifs });
-	};
-
-	render() {
-		return (
-			<>
-				<div className="Main">
-					<Switch>
-						<Route
-							exact
-							path="/"
-							render={routerProps => (
-								<>
-									<Search {...routerProps} userData={this.props.userData} />
-									<Favorites {...routerProps} userData={this.props.userData} />
-								</>
-							)}
-						/>
-
-						<Route path="/liked" />
-					</Switch>
-				</div>
-			</>
-		);
-	}
-}
+					<Route
+						path="/results"
+						render={routerProps => <WeirdnessScore userData={userData} />}
+					/>
+				</Switch>
+			</div>
+		</>
+	);
+};
 
 export default Main;
