@@ -51,6 +51,15 @@ export default function userDataReducer(
 				message: action.message
 			};
 
+		case 'START_OVER':
+			return {
+				...state,
+				likedGifs: [],
+				currentGif: {},
+				gifsLeft: 5,
+				message: ''
+			};
+
 		default:
 			return state;
 	}

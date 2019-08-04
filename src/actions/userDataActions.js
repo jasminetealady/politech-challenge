@@ -33,3 +33,9 @@ export function setMessage(message) {
 		dispatch({ type: 'SET_MESSAGE', message });
 	};
 }
+
+export function startOver() {
+	return dispatch => {
+		dispatch({ type: 'START_OVER' });
+	};
+}

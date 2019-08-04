@@ -1,8 +1,11 @@
 import React from 'react';
 import GIF from './GIF.js';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { startOver } from '../actions/userDataActions.js';
 
-const WeirdnessScore = ({ userData }) => {
+const WeirdnessScore = ({ userData, startOver }) => {
 	let { likedGifs } = userData;
 	let gifs;
 	let averageWeirdness;
@@ -18,6 +21,10 @@ const WeirdnessScore = ({ userData }) => {
 		));
 	}
 
+	const handleClick = () => {
+		startOver();
+	};
+
 	return (
 		<>
 			<div className="Weirdness-Score">
@@ -29,7 +36,9 @@ const WeirdnessScore = ({ userData }) => {
 						<p>The GIFs you liked:</p>
 						<div className="Weirdness-Score-GIFs">{gifs}</div>
 						<div className="Button-Wrapper">
-							<Link to="/">Start Over</Link>
+							<Link onClick={handleClick} to="/">
+								Start Over
+							</Link>
 						</div>
 					</>
 				)}
@@ -49,4 +58,9 @@ const WeirdnessScore = ({ userData }) => {
 	);
 };
 
-export default WeirdnessScore;
+export default withRouter(
+	connect(
+		null,
+		{ startOver }
+	)(WeirdnessScore)
+);
