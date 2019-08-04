@@ -3,7 +3,8 @@ export default function userDataReducer(
 		loading: false,
 		likedGifs: [],
 		currentGif: {},
-		gifsLeft: 5
+		gifsLeft: 5,
+		message: ''
 	},
 	action
 ) {
@@ -42,6 +43,12 @@ export default function userDataReducer(
 				...state,
 				likedGifs: gifsAfterDelete,
 				gifsLeft: remainingAfterDelete
+			};
+
+		case 'SET_MESSAGE':
+			return {
+				...state,
+				message: action.message
 			};
 
 		default:
