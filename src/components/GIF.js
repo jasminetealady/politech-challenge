@@ -3,16 +3,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { deleteGif } from '../actions/userDataActions.js';
+import { deleteGif, setMessage } from '../actions/userDataActions.js';
 import loadingIndicator from '../images/loading.gif';
 
-function GIF({ name, url, loading, icon, deleteGif }) {
+const GIF = ({ name, url, loading, icon, deleteGif, setMessage }) => {
 	const handleClick = () => {
+		//unlikes GIF
 		let currentGif = { url: url };
 		deleteGif(currentGif);
+		//resets error message
+		setMessage('');
 	};
 
 	const showLoadingOrImage = () => {
+		//show loading GIF while loading, render GIF, or show nothing initially
 		if (loading) {
 			return <img src={loadingIndicator} alt="loading" />;
 		} else if (!loading && !url) {
@@ -32,11 +36,11 @@ function GIF({ name, url, loading, icon, deleteGif }) {
 			{showLoadingOrImage()}
 		</div>
 	);
-}
+};
 
 export default withRouter(
 	connect(
 		null,
-		{ deleteGif }
+		{ deleteGif, setMessage }
 	)(GIF)
 );
