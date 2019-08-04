@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Results from './Results.js';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchGif } from '../actions/userDataActions.js';
+import { fetchGif, setMessage } from '../actions/userDataActions.js';
 
 class Search extends Component {
 	state = {
@@ -18,6 +18,7 @@ class Search extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		if (this.state.query !== '') {
+			this.props.setMessage('');
 			this.props.fetchGif(this.state.query, 0);
 		} else this.setState({ error: true });
 	};
@@ -60,13 +61,9 @@ class Search extends Component {
 	}
 }
 
-// const mapStateToProps = state => {
-// 	return { query: state.userData };
-// };
-
 export default withRouter(
 	connect(
 		null,
-		{ fetchGif }
+		{ fetchGif, setMessage }
 	)(Search)
 );
