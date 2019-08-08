@@ -7,40 +7,40 @@ import { deleteGif, setMessage } from '../actions/userDataActions.js';
 import loadingIndicator from '../images/loading.gif';
 
 const GIF = ({ name, url, loading, icon, deleteGif, setMessage }) => {
-	const handleClick = () => {
-		//unlikes GIF
-		let currentGif = { url: url };
-		deleteGif(currentGif);
-		//resets error message
-		setMessage('');
-	};
+  const handleClick = () => {
+    //unlikes GIF
+    let currentGif = { url: url };
+    deleteGif(currentGif);
+    //resets error message
+    setMessage('');
+  };
 
-	const showLoadingOrImage = () => {
-		//show loading GIF while loading, render GIF, or show nothing initially
-		if (loading) {
-			return <img src={loadingIndicator} alt="loading" />;
-		} else if (!loading && !url) {
-			return null;
-		} else
-			return (
-				<>
-					<p className="GIF-Name">{name}</p>
-					<img src={url} alt="giphy gif" />
-				</>
-			);
-	};
+  const showLoadingOrImage = () => {
+    //show loading GIF while loading, render GIF, or show nothing initially
+    if (loading) {
+      return <img src={loadingIndicator} alt="loading" />;
+    } else if (!loading && !url) {
+      return null;
+    } else
+      return (
+        <>
+          <p className="GIF-Name">{name}</p>
+          <img src={url} alt="giphy gif" />
+        </>
+      );
+  };
 
-	return (
-		<div className="GIF">
-			{icon && <FontAwesomeIcon onClick={handleClick} icon={faTimes} />}
-			{showLoadingOrImage()}
-		</div>
-	);
+  return (
+    <div className="GIF">
+      {icon && <FontAwesomeIcon onClick={handleClick} icon={faTimes} />}
+      {showLoadingOrImage()}
+    </div>
+  );
 };
 
 export default withRouter(
-	connect(
-		null,
-		{ deleteGif, setMessage }
-	)(GIF)
+  connect(
+    null,
+    { deleteGif, setMessage }
+  )(GIF)
 );
